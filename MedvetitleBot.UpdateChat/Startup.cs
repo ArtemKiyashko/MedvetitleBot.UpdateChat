@@ -1,6 +1,8 @@
 ﻿using System;
 using Azure.Identity;
+using MedvetitleBot.UpdateChat.Interfaces;
 using MedvetitleBot.UpdateChat.Options;
+using MedvetitleBot.UpdateChat.Repositories;
 using Microsoft.Azure.Functions.Extensions.DependencyInjection;
 using Microsoft.Extensions.Azure;
 using Microsoft.Extensions.Configuration;
@@ -31,6 +33,10 @@ namespace MedvetitleBot.UpdateChat
             });
 
             builder.Services.AddScoped<ITelegramBotClient>(factory => new TelegramBotClient(_updateChatOptions.TelegramBotToken));
+
+            builder.Services.AddAutoMapper(typeof(Startup));
+
+            builder.Services.AddScoped<IStorageRepository, StorageRepository>();
         }
     }
 }
