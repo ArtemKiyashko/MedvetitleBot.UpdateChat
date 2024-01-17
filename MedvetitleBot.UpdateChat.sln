@@ -1,0 +1,30 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 25.0.1706.8
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MedvetitleBot.UpdateChat", "MedvetitleBot.UpdateChat\MedvetitleBot.UpdateChat.csproj", "{12386404-2D21-4E7B-B534-9F7774346C3A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{DCBBE46C-F785-44FD-8209-F0FA54A6401B}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{12386404-2D21-4E7B-B534-9F7774346C3A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{12386404-2D21-4E7B-B534-9F7774346C3A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{12386404-2D21-4E7B-B534-9F7774346C3A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{12386404-2D21-4E7B-B534-9F7774346C3A}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {923B1E54-7A5F-4D78-A32C-EEECCB91D55E}
+	EndGlobalSection
+EndGlobal
