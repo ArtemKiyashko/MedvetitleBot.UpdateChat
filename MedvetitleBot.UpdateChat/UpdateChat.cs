@@ -24,7 +24,7 @@ namespace MedvetitleBot.UpdateChat
         }
 
         [FunctionName("UpdateChat")]
-        public async Task Run([TimerTrigger("%FUNCTION_SCHEDULE%", RunOnStartup = true)]TimerInfo myTimer)
+        public async Task Run([TimerTrigger("%FUNCTION_SCHEDULE%", RunOnStartup = false)]TimerInfo myTimer)
         {
             var chats = await _storageRepository.GetChats();
             var titleOptions = await _storageRepository.GetTitleOptions();
