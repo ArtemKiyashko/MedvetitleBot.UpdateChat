@@ -23,6 +23,9 @@ namespace MedvetitleBot.UpdateChat
                 .AddEnvironmentVariables()
                 .Build();
 
+            builder.Services.Configure<UpdateChatOptions>(_functionConfig.GetSection(nameof(UpdateChatOptions)));
+            _functionConfig.GetSection(nameof(UpdateChatOptions)).Bind(_updateChatOptions);
+
             builder.Services.AddAzureClients(clientBuilder => {
                 clientBuilder.UseCredential(new DefaultAzureCredential());
 
