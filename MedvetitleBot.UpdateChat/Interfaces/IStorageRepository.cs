@@ -8,6 +8,7 @@ namespace MedvetitleBot.UpdateChat.Interfaces
 	{
 		Task<List<TitleOption>> GetTitleOptions();
         Task<List<Chat>> GetChats();
+        Task<long> UpsertChat(Chat chat);
     }
 }
 

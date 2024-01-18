@@ -33,14 +33,15 @@ namespace MedvetitleBot.UpdateChat
             {
                 try
                 {
-                    var newTitle = titleOptions[Random.Shared.Next(titleOptions.Count)].Title;
-                    _logger.LogInformation($"New title selected: {newTitle}");
-                    await _telegramBotClient.SetChatTitleAsync(chat.Id, newTitle);
-                    _logger.LogInformation($"New title set. ChatId: {chat.Id}, NewTitle: {newTitle}");
+                    chat.Title = titleOptions[Random.Shared.Next(titleOptions.Count)].Title;
+                    _logger.LogInformation($"New title selected: {chat.Title}");
+                    await _telegramBotClient.SetChatTitleAsync(chat.Id, chat.Title);
+                    await _storageRepository.UpsertChat(chat);
+                    _logger.LogInformation($"New title set. ChatId: {chat.Id}, NewTitle: {chat.Title}");
                 }
                 catch (Exception ex)
                 {
-                    _logger.LogError(ex, $"Error updating chat title. ChatId: {chat.Id}");
+                    _logger.LogError(ex, $"Error updating chat title. ChatId: {chat.Id}; ChatTitle: {chat.Title}");
                 }
             }
         }
