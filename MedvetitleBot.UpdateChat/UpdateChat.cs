@@ -4,6 +4,7 @@ using MedvetitleBot.UpdateChat.Interfaces;
 using Microsoft.Azure.WebJobs;
 using Microsoft.Extensions.Logging;
 using Telegram.Bot;
+using Telegram.Bot.Exceptions;
 
 namespace MedvetitleBot.UpdateChat
 {
@@ -35,9 +36,18 @@ namespace MedvetitleBot.UpdateChat
                 {
                     chat.Title = titleOptions[Random.Shared.Next(titleOptions.Count)].Title;
                     _logger.LogInformation($"New title selected: {chat.Title}");
-                    await _telegramBotClient.SetChatTitleAsync(chat.Id, chat.Title);
-                    await _storageRepository.UpsertChat(chat);
-                    _logger.LogInformation($"New title set. ChatId: {chat.Id}, NewTitle: {chat.Title}");
+                    try
+                    {
+                        await _telegramBotClient.SetChatTitleAsync(chat.Id, chat.Title);
+                        await _storageRepository.UpsertChat(chat);
+                        _logger.LogInformation($"New title set. ChatId: {chat.Id}, NewTitle: {chat.Title}");
+                    }
+                    catch (ApiRequestException ex) when (ex.ErrorCode == 403)
+                    {
+                        _logger.LogWarning($"Bot has been forbidden in the chat: {chat.Id}, Title: {chat.Title}");
+                        chat.Enabled = false;
+                        await _storageRepository.UpsertChat(chat);
+                    }
                 }
                 catch (Exception ex)
                 {
